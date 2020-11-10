@@ -1,18 +1,21 @@
 const path = require("path");
 const appPath = path.resolve(__dirname, "../../../src");
 const projectConfig = require(path.resolve(appPath,'../vue.config.js'))
-console.info(projectConfig);
 
 module.exports = (env,config) => {
+  config.merge(projectConfig)
+  const entry = path.resolve(appPath, "main.ts");
+  const output = {
+    path: path.resolve(appPath, `../${config.get('outputDir') || 'dist'}`),
+    filename:'mian.js'
+  }
+  const obj = {
+    entry,
+    output
+  }
 
-  config.merge({
-    entry: path.resolve(appPath, "main.ts"),
-    output: {
-      path: path.resolve(appPath, `../${config.outputDir || 'dist'}`),
-      filename:'mian.js'
-    }
-  })
-
-  require('./style')(env,config);
-  require('./vue')(env,config);
+  config.merge(obj)
+  require('./style')(env,config,{appPath});
+  require('./vue')(env,config,{appPath});
+  require('./devServer')(env,config,{appPath});
 };

@@ -1,8 +1,9 @@
+const path = require('path')
 const webpack = require('webpack')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-modules.export = (env,config)=>{
+module.exports = (env,config)=>{
 
   const pluginConfig = {
     plugin:{
@@ -19,7 +20,7 @@ modules.export = (env,config)=>{
         plugin:HtmlWebpackPlugin,
         args:[{
           title:'Page',
-          template:
+          template: path.resolve(config.appPath,'../public/index.html')
         }]
       }
     }

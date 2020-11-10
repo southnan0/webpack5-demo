@@ -1,3 +1,10 @@
+const cssRegex = /\.css$/;
+const cssModuleRegex = /\.module\.css$/;
+const sassRegex = /\.(scss|sass)$/;
+const sassModuleRegex = /\.module\.(sass|scss)$/;
+const lessRegex = /\.less$/;
+const lessModuleRegex = /\.module\.less$/;
+
 module.exports = (env,config)=>{
   const getStyleLoader = (modules = false, preProcessor = {}) => {
     return {

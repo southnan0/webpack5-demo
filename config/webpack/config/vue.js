@@ -1,5 +1,4 @@
-modules.export = (env,config)=>{
-  
+module.exports = (env,config)=>{
   const vueConfig = {
     module:{
       rule:{
@@ -17,6 +16,6 @@ modules.export = (env,config)=>{
       }
     }
   }
-  
+
   config.merge(vueConfig)
 }
