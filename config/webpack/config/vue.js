@@ -4,14 +4,14 @@ module.exports = (env,config)=>{
       rule:{
         vue:{
           test: /\.vue$/,
-          use: {
-            loader: require('vue-loader'),
+          use: [{
+            loader: require.resolve('vue-loader'),
             options: {
               compilerOptions:{
                 whitespace:'condense'
               }
             }
-          }
+          }]
         }
       }
     }

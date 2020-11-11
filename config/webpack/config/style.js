@@ -53,7 +53,7 @@ module.exports = (env,config)=>{
               sass: {
                 loader: require.resolve('sass-loader'),
                 options: {
-                  implementation: require('sass'),
+                  implementation: require.resolve('sass'),
                   sourceMap: env === 'development',
                 },
               },
@@ -68,7 +68,7 @@ module.exports = (env,config)=>{
               sass: {
                 loader: require.resolve('sass-loader'),
                 options: {
-                  implementation: require('sass'),
+                  implementation: require.resolve('sass'),
                   sourceMap: env === 'development',
                 },
               },
