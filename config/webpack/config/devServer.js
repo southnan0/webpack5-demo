@@ -3,10 +3,9 @@ const path = require('path')
 module.exports = (env,config)=>{
     config.merge({
         devServer:{
-            publicPath:path.join(__dirname, '../../../contract'),
-            contentBase: path.join(__dirname, '../../../contract'),
+            contentBase: path.join(__dirname, 'dist'),
             compress:true,
-            port:8080
+            port:8081
         }
     })
 }

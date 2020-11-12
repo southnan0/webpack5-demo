@@ -7,8 +7,7 @@ const webpackConfigFn = (env,config) => {
   // config.merge(projectConfig)
   const entry = {main:path.resolve(appPath, "main.ts")};
   const output = {
-    path: path.resolve(appPath, `../${projectConfig.outputDir || 'dist'}`),
-    filename:'mian.js'
+    filename:'main.js'
   }
   const obj = {
     mode:env,
@@ -16,7 +15,8 @@ const webpackConfigFn = (env,config) => {
       // 设置别名
       alias: {
         '@': appPath
-      }
+      },
+      extensions: ['.mjs', '.js', '.jsx', '.vue', '.json', '.wasm','.ts']
     },
     entry,
     output
@@ -25,9 +25,9 @@ const webpackConfigFn = (env,config) => {
   config.merge(obj)
   require('./style')(env,config,{appPath});
   require('./vue')(env,config,{appPath});
-
-  console.info('do require')
   require('./devServer')(env,config,{appPath});
+  require('./plugin')(env,config,{appPath});
+  require('./base')(env,config,{appPath});
 };
 
 module.exports = (env)=>{

@@ -1,5 +1,4 @@
 import axios from "axios";
-const FormData = require("form-data");
 import Utils from "@/utils/wx";
 import { getToken, removeToken } from "@/utils/cache";
 import { Notify, Toast } from "vant";

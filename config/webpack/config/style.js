@@ -9,7 +9,7 @@ module.exports = (env,config)=>{
   const getStyleLoader = (modules = false, preProcessor = {}) => {
     return {
       style: {
-        loader: require.resolve('style-loader'),
+        loader: require.resolve('vue-style-loader'),
       },
       css: {
         loader: require.resolve('css-loader'),
@@ -47,13 +47,13 @@ module.exports = (env,config)=>{
         },
         sassModule: {
           test: sassModuleRegex,
-          // exclude: sassRegex,
+          exclude: sassRegex,
           use: {
             ...getStyleLoader(true, {
               sass: {
                 loader: require.resolve('sass-loader'),
                 options: {
-                  implementation: require.resolve('sass'),
+                  implementation: require('sass'),
                   sourceMap: env === 'development',
                 },
               },
@@ -68,7 +68,7 @@ module.exports = (env,config)=>{
               sass: {
                 loader: require.resolve('sass-loader'),
                 options: {
-                  implementation: require.resolve('sass'),
+                  implementation: require('sass'),
                   sourceMap: env === 'development',
                 },
               },

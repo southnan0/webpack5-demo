@@ -2,15 +2,16 @@ const path = require('path')
 const webpack = require('webpack')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { VueLoaderPlugin } = require('vue-loader')
 
-module.exports = (env,config)=>{
-
+module.exports = (env,config,{appPath})=>{
   const pluginConfig = {
     plugin:{
       env:{
         plugin: webpack.EnvironmentPlugin,
         args:[{
-          NODE_ENV:env
+          NODE_ENV:env,
+          BASE_URL: process.env.BASE_URL
         }]
       },
       clean:{
@@ -20,8 +21,15 @@ module.exports = (env,config)=>{
         plugin:HtmlWebpackPlugin,
         args:[{
           title:'Page',
-          template: path.resolve(config.appPath,'../public/index.html')
+          template: path.resolve(appPath,'../public/index.html'),
+          templateParameters:{
+            ...process.env
+          }
         }]
+      },
+      vue3:{
+        plugin:VueLoaderPlugin,
+        args:[]
       }
     }
   }

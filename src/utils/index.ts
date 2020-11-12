@@ -1,4 +1,5 @@
 import { reportError } from '@/utils/request'
+declare const window: any;
 
 export const getTimeStamp = () => {
   var timestamp = new Date().getTime()
@@ -7,8 +8,8 @@ export const getTimeStamp = () => {
 }
 
 const HISTORY_ADDRESS_KEY = 'taxiHistory'
-export const initHistoryAddressList = cityName => {
-  let taxiHistory = {}
+export const initHistoryAddressList = (cityName: any) => {
+  let taxiHistory:any = {}
 
   try {
     taxiHistory =
@@ -20,7 +21,7 @@ export const initHistoryAddressList = cityName => {
     taxiHistory.data = []
   }
 
-  const arr = taxiHistory.data?.filter(item => {
+  const arr = taxiHistory.data?.filter((item:any) => {
     if (cityName) {
       return item.cityName === cityName
     }
@@ -30,7 +31,7 @@ export const initHistoryAddressList = cityName => {
   return arr
 }
 
-export const setHistoryAddressList = historyAddressList => {
+export const setHistoryAddressList = (historyAddressList: any) => {
   window.localStorage.setItem(
     HISTORY_ADDRESS_KEY,
     JSON.stringify({ data: historyAddressList })
@@ -42,7 +43,7 @@ export const iosInputHandle = () => {
   var ua = navigator.userAgent
   if (ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
     // let flag = false;
-    let pageBackNormFunc
+    let pageBackNormFunc: number | undefined
     // document.body.addEventListener("focusin", () => {
     //   // 软键盘弹起事件
     //   flag = true;
@@ -62,13 +63,13 @@ export const iosInputHandle = () => {
   }
 }
 
-export const getAddress = locations => {
+export const getAddress = (locations: any) => {
   const geocoder = new window.AMap.Geocoder({
     radius: 500 // 范围，默认：500
   })
 
   return new Promise(resolve => {
-    geocoder.getAddress(locations, (status, result) => {
+    geocoder.getAddress(locations, (status: string, result: { regeocode: { addressComponent: any; }; }) => {
       if (status === 'complete' && result.regeocode) {
         console.info('getAddress', result)
         const address = result.regeocode.addressComponent

@@ -101,6 +101,8 @@ const routes = [
   },
 ];
 
+console.info(process.env.NODE_ENV)
+
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
