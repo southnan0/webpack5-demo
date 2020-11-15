@@ -7,7 +7,8 @@ const webpackConfigFn = (env,config) => {
   // config.merge(projectConfig)
   const entry = {main:path.resolve(appPath, "main.ts")};
   const output = {
-    filename:'main.js'
+    filename:'main.js',
+    path: path.resolve(appPath, '../contract')
   }
   const obj = {
     mode:env,

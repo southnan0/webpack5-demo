@@ -22,6 +22,17 @@ module.exports = (env,config)=>{
         options: {
           postcssOptions: {
             hideNothingWarning: true,
+            plugins:function() {
+              return [
+                require('autoprefixer')({
+                  overrideBrowserslist: ['>0.25%', 'not dead']
+                }),
+                require("stylelint")({
+                  /* your options */
+                }),
+                require("postcss-reporter")({ clearReportedMessages: true })
+              ]
+            }
           },
         },
       },

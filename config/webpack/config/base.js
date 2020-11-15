@@ -4,8 +4,18 @@ module.exports = (env,config,{appPath})=>{
       rule:{
         ts:{
           test:/\.ts$/,
-          loader:'ts-loader',
-          options: { appendTsSuffixTo: [/\.vue$/] }
+          use:[{
+            loader:'babel-loader',
+            options:{
+              presets:['@babel/preset-env',
+                [
+                    '@babel/preset-typescript',
+                  {
+                    allExtensions:true
+                  }
+                ]]
+            }
+          }]
         },
         file:{
           test: /\.(png|jpe?g|gif)$/i,
